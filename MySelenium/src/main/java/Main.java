@@ -1,13 +1,14 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import net.bytebuddy.utility.RandomString;
 
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-public class Main{
-    public static void main(String[] args) {
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Properties;
+import java.util.Random;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
 
     }
-
 }
+

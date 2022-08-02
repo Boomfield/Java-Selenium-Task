@@ -9,7 +9,6 @@ import steps.NavigatorSteps;
 
 public class TestTutorialPage extends BaseTest {
 
-    private String searchFilterText = "abap";
     private NavigatorPage navigatorPage;
     private NavigatorSteps navigatorSteps;
     private NavigationSap navigationSap;
@@ -20,8 +19,14 @@ public class TestTutorialPage extends BaseTest {
         navigationSap = new NavigationSap();
     }
 
-    @Test
-    public void checkResultSearchTopic() {
+    @DataProvider(name = "TopicSearchDataProvider", parallel = true)
+    public Object[] getData() {
+        Object[] data = {"android", "abap"};
+        return data;
+    }
+
+    @Test(dataProvider = "TopicSearchDataProvider")
+    public void checkResultSearchTopic(String searchFilterText) {
         navigationSap.openPageAndAcceptCookies(PageUrls.tutorials);
         navigatorPage.topicFacetSection.enterTopicSearchText(searchFilterText);
         navigatorSteps.VerifyAllTopicSearchResultsContains(searchFilterText);

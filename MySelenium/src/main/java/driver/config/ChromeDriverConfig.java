@@ -13,7 +13,7 @@ public class ChromeDriverConfig extends BaseDriverConfig {
         System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver();
 
         configureWaits(driver);
         driver.manage().window().maximize();

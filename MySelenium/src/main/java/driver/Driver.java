@@ -2,6 +2,7 @@ package driver;
 
 import component.Locator;
 import driver.config.BaseDriverConfig;
+import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,9 +17,10 @@ public class Driver {
 
     private WebDriver driver;
     private BaseDriverConfig config;
+    private By firstIFrame = null;
     public static ThreadLocal<Driver> instance = new ThreadLocal<>();
 
-    private WebDriver getNativeDriver() {
+    public WebDriver getNativeDriver() {
         if (driver == null) {
             driver = config.createDriver(System.getenv("CHROME_DRIVER"));
         }
@@ -37,16 +39,31 @@ public class Driver {
         getNativeDriver().navigate().to(url);
     }
 
-    public WebElement findElement(Locator locator) {
+    public SearchContext findParent(Locator locator) {
         if (locator.parent != null) {
-            return driver.findElement(locator.parent).findElement(locator.element);
+            if (locator.parent.iFrame) {
+                if (firstIFrame == null || !firstIFrame.equals(locator.parent.element)) {
+                    switchTo(locator.parent.element);
+                    firstIFrame = locator.parent.element;
+                }
+                return driver;
+            } else {
+                driver.switchTo().defaultContent();
+                return driver.findElement(locator.parent.element);
+            }
+        } else {
+            driver.switchTo().defaultContent();
+            return driver;
         }
-        return driver.findElement(locator.element);
+    }
+
+
+    public WebElement findElement(Locator locator) {
+        return findParent(locator).findElement(locator.element);
     }
 
     public ArrayList<WebElement> findElements(Locator locator) {
-        SearchContext context = locator.parent == null ? getNativeDriver() : getNativeDriver().findElement(locator.parent);
-        return (ArrayList<WebElement>) context.findElements(locator.element);
+        return (ArrayList<WebElement>) findParent(locator).findElements(locator.element);
     }
 
     public ArrayList<String> getResultTextList(Locator locator) {
@@ -60,10 +77,14 @@ public class Driver {
         button.click();
     }
 
+    public void switchTo(By by) {
+        driver.switchTo().frame(driver.findElement(by));
+    }
+
     public void clickByText(Locator locator, String text) {
-       Optional<WebElement> element = Driver.getDriver().findElements(locator)
+        Optional<WebElement> element = Driver.getDriver().findElements(locator)
                 .stream().filter(x -> x.getText().equals(text)).findFirst();
-       element.get().click();
+        element.get().click();
     }
 
     public void clickPaginationByIndex(int index, Locator locator) {

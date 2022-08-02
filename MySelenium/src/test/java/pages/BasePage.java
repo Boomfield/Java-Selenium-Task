@@ -5,21 +5,21 @@ import org.openqa.selenium.By;
 
 public class BasePage {
 
-    public By byXpath;
+    public Locator locator;
 
-    public BasePage(By byXpath) {
-        this.byXpath = byXpath;
+    public BasePage(Locator locator) {
+        this.locator = locator;
     }
 
     public BasePage() {
     }
 
-    public Locator getLocatorByXpath(String byXpath) {
-        return new Locator(By.xpath(byXpath), this.byXpath);
+    public Locator getLocatorByXpath(String byXpath1) {
+        return new Locator(By.xpath(byXpath1), this.locator);
     }
 
     public Locator getLocatorByCss(String css) {
-        return new Locator(By.cssSelector(css), byXpath);
+        return new Locator(By.cssSelector(css), this.locator);
     }
 
 }
