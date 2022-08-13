@@ -9,16 +9,16 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+
+
+import static driver.Driver.getDriver;
 
 public class BaseTest {
     private static BaseDriverConfig baseDriverBuilder = new DriverConfigFactory().getConfig(BrowserType.Chrome);
 
     @BeforeSuite
-    public void onStart() throws IOException {
+    public void onStart() {
         String env = System.getProperty("conf");
         PropertyHelper.initProperty(String.format("src\\test\\resources\\config.%s.properties", "prod"));
     }
@@ -30,7 +30,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        Driver.getDriver().close();
+        getDriver().close();
     }
 
 }

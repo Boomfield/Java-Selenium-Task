@@ -1,5 +1,6 @@
 package driver.config;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,6 +18,7 @@ public class ChromeDriverConfig extends BaseDriverConfig {
 
         configureWaits(driver);
         driver.manage().window().maximize();
+
 
         return driver;
     }

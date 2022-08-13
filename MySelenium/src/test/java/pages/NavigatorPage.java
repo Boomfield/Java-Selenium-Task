@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import pages.component.FilterFacet;
 import pages.component.FilterFacetSearch;
 
+import static driver.Driver.getDriver;
+
 public class NavigatorPage extends BasePage {
 
     public FilterFacetSearch topicFacetSection = new FilterFacetSearch(getLocatorByXpath("(//div[contains(@class,'FilterFacets__filterFacetsColumn')])[1]"));
@@ -23,13 +25,12 @@ public class NavigatorPage extends BasePage {
     }
 
     public int getPaginationSize() {
-        int paginationSize = Driver.getDriver().findElements(paginationNumberLink).size();
+        int paginationSize = getDriver().findElements(paginationNumberLink).size();
         return paginationSize;
     }
 
-
     public void clickPaginationLinkByNumber(int pageNumber) {
-        Driver.getDriver().clickPaginationByIndex(pageNumber, paginationNumberLink);
+        getDriver().clickPaginationByIndex(pageNumber, paginationNumberLink);
     }
 
 }

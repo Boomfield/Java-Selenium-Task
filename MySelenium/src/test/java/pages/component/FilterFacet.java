@@ -2,12 +2,10 @@ package pages.component;
 
 import component.Locator;
 import driver.Driver;
-import org.openqa.selenium.By;
 import pages.BasePage;
 import pages.helpers.ExperienceType;
 import wait.Waiter;
 
-import java.util.ArrayList;
 
 import static driver.Driver.getDriver;
 

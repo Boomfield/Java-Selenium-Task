@@ -3,10 +3,11 @@ package tests;
 import org.testng.annotations.Test;
 import pages.FrameContactAsForm;
 import pages.NavigationSap;
-import pages.NavigatorPage;
 import pages.SapPage;
+import pages.helpers.ContactFormRelationshipToSap;
 import pages.helpers.ContactFormTopicType;
 import pages.helpers.Form;
+import wait.Waiter;
 
 public class TestSapPage extends BaseTest {
 
@@ -26,9 +27,10 @@ public class TestSapPage extends BaseTest {
     public void checkContactForm() {
         navigationSap.openSapPageAndAcceptCookies();
         sapPage.openFrameContactForm();
-        frameContactAsForm.chooseTitleOfQuestion(ContactFormTopicType.Events);
+        frameContactAsForm.chooseTitleOfQuestion(ContactFormTopicType.Podpora);
         frameContactAsForm.enterYourText();
         frameContactAsForm.enterYourPersonalDetails(form);
+        frameContactAsForm.chooseRelationshipToSap(ContactFormRelationshipToSap.Partner);
 
     }
 }

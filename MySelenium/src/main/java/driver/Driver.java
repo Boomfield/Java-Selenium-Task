@@ -2,10 +2,7 @@ package driver;
 
 import component.Locator;
 import driver.config.BaseDriverConfig;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ import static java.util.stream.Collectors.toCollection;
 
 public class Driver {
 
-    private WebDriver driver;
+    public WebDriver driver;
     private BaseDriverConfig config;
     private By firstIFrame = null;
     public static ThreadLocal<Driver> instance = new ThreadLocal<>();
@@ -33,6 +30,14 @@ public class Driver {
 
     public Driver(BaseDriverConfig config) {
         this.config = config;
+    }
+
+    public void addCookies(Cookie cookie) {
+        driver.manage().addCookie(cookie);
+    }
+
+    public JavascriptExecutor getJavascriptExecutor() {
+        return (JavascriptExecutor) driver;
     }
 
     public void navigate(String url) {
@@ -56,7 +61,6 @@ public class Driver {
             return driver;
         }
     }
-
 
     public WebElement findElement(Locator locator) {
         return findParent(locator).findElement(locator.element);
@@ -83,7 +87,7 @@ public class Driver {
 
     public void clickByText(Locator locator, String text) {
         Optional<WebElement> element = Driver.getDriver().findElements(locator)
-                .stream().filter(x -> x.getText().equals(text)).findFirst();
+                .stream().filter(x -> x.getAttribute("textContent").trim().equals(text)).findFirst();
         element.get().click();
     }
 
