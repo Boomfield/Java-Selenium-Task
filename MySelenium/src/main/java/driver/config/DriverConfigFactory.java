@@ -1,7 +1,5 @@
 package driver.config;
 
-import helpers.BrowserType;
-
 public class DriverConfigFactory {
     public BaseDriverConfig getConfig(BrowserType browserType) {
         switch (browserType) {
@@ -10,7 +8,7 @@ public class DriverConfigFactory {
             case Firefox:
                 return new FirefoxDriverConfig();
             default:
-                return null;
+                throw new IllegalArgumentException("bad browser name");
         }
     }
 }

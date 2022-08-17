@@ -1,9 +1,9 @@
 package driver.config;
 
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class ChromeDriverConfig extends BaseDriverConfig {
 
@@ -11,14 +11,15 @@ public class ChromeDriverConfig extends BaseDriverConfig {
 
     @Override
     public WebDriver createDriver(String pathToChromeDriver) {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        ChromeOptions option = new ChromeOptions();
+        option.addArguments("incognito");
+        capabilities.setCapability(ChromeOptions.CAPABILITY,option);
         System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver(capabilities);
 
         configureWaits(driver);
         driver.manage().window().maximize();
-
 
         return driver;
     }

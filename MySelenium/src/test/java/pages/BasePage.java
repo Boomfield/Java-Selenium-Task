@@ -14,11 +14,11 @@ public class BasePage {
     public BasePage() {
     }
 
-    public Locator getLocatorByXpath(String byXpath1) {
-        return new Locator(By.xpath(byXpath1), this.locator);
+    public Locator getByXpath(String xpath) {
+        return new Locator(By.xpath(xpath), this.locator);
     }
 
-    public Locator getLocatorByCss(String css) {
+    public Locator getByCss(String css) {
         return new Locator(By.cssSelector(css), this.locator);
     }
 

@@ -3,13 +3,11 @@ package tests;
 import driver.Driver;
 import driver.config.BaseDriverConfig;
 import driver.config.DriverConfigFactory;
-import helpers.BrowserType;
+import driver.config.BrowserType;
 import helpers.PropertyHelper;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
-import java.io.IOException;
 
 
 import static driver.Driver.getDriver;

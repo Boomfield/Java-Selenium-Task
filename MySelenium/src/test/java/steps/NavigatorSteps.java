@@ -1,9 +1,9 @@
 package steps;
 
 import driver.Driver;
-import pages.NavigatorPage;
-import pages.component.ResultItem;
-import pages.helpers.ExperienceType;
+import pages.tutorialNavigator.NavigatorPage;
+import pages.tutorialNavigator.component.ResultItem;
+import pages.tutorialNavigator.helpers.ExperienceType;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class NavigatorSteps {
     public void VerifyAllHeaderResultsContains(ExperienceType nameFilter) {
         for (int i = 0; i < navigatorPage.getPaginationSize(); i++) {
             navigatorPage.clickPaginationLinkByNumber(i);
-            ArrayList<String> allHeaderTitle = Driver.getDriver().getResultTextList(resultItem.headerTitle);
+            ArrayList<String> allHeaderTitle = Driver.getDriver().getElementsText(resultItem.headerTitle);
             assertThat(allHeaderTitle, everyItem(equalTo(nameFilter.toString())));
         }
     }

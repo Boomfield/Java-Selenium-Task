@@ -1,22 +1,21 @@
 package tests;
 
-import data.PageUrls;
 import org.testng.annotations.*;
-import pages.NavigationSap;
-import pages.NavigatorPage;
-import pages.helpers.ExperienceType;
+import pages.PageAndCookie;
+import pages.tutorialNavigator.NavigatorPage;
+import pages.tutorialNavigator.helpers.ExperienceType;
 import steps.NavigatorSteps;
 
 public class TestTutorialPage extends BaseTest {
 
     private NavigatorPage navigatorPage;
     private NavigatorSteps navigatorSteps;
-    private NavigationSap navigationSap;
+    private PageAndCookie navigationSap;
 
     public TestTutorialPage() {
         navigatorPage = new NavigatorPage();
         navigatorSteps = new NavigatorSteps();
-        navigationSap = new NavigationSap();
+        navigationSap = new PageAndCookie();
     }
 
     @DataProvider(name = "TopicSearchDataProvider", parallel = true)
@@ -27,14 +26,14 @@ public class TestTutorialPage extends BaseTest {
 
     @Test(dataProvider = "TopicSearchDataProvider")
     public void checkResultSearchTopic(String searchFilterText) {
-        navigationSap.openPageAndAcceptCookies(PageUrls.tutorials);
+        navigationSap.openNavigatorPageAndAcceptCookies();
         navigatorPage.topicFacetSection.enterTopicSearchText(searchFilterText);
         navigatorSteps.VerifyAllTopicSearchResultsContains(searchFilterText);
     }
 
     @Test
     public void checkFilterExperienceWithTitleHeader() {
-        navigationSap.openPageAndAcceptCookies(PageUrls.tutorials);
+        navigationSap.openNavigatorPageAndAcceptCookies();
         navigatorPage.experienceFacetSection.clickExperienceFilter(ExperienceType.Intermediate);
         navigatorSteps.VerifyAllHeaderResultsContains(ExperienceType.Intermediate);
     }

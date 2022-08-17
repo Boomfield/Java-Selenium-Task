@@ -14,7 +14,7 @@ public class Driver {
 
     public WebDriver driver;
     private BaseDriverConfig config;
-    private By firstIFrame = null;
+    private By currentFrame = null;
     public static ThreadLocal<Driver> instance = new ThreadLocal<>();
 
     public WebDriver getNativeDriver() {
@@ -24,16 +24,19 @@ public class Driver {
         return driver;
     }
 
-    public static Driver getDriver() {
-        return Driver.instance.get();
-    }
-
     public Driver(BaseDriverConfig config) {
         this.config = config;
     }
 
-    public void addCookies(Cookie cookie) {
-        driver.manage().addCookie(cookie);
+    public static Driver getDriver() {
+        return instance.get();
+    }
+
+    public void addCookies() {
+        Cookie cookie1 = new Cookie("notice_gdpr_prefs", "0,1,2:");
+        Cookie cookie2 = new Cookie("notice_preferences", "2:");
+        getDriver().driver.manage().addCookie(cookie1);
+        getDriver().driver.manage().addCookie(cookie2);
     }
 
     public JavascriptExecutor getJavascriptExecutor() {
@@ -47,9 +50,9 @@ public class Driver {
     public SearchContext findParent(Locator locator) {
         if (locator.parent != null) {
             if (locator.parent.iFrame) {
-                if (firstIFrame == null || !firstIFrame.equals(locator.parent.element)) {
+                if (currentFrame == null || !currentFrame.equals(locator.parent.element)) {
                     switchTo(locator.parent.element);
-                    firstIFrame = locator.parent.element;
+                    currentFrame = locator.parent.element;
                 }
                 return driver;
             } else {
@@ -70,10 +73,10 @@ public class Driver {
         return (ArrayList<WebElement>) findParent(locator).findElements(locator.element);
     }
 
-    public ArrayList<String> getResultTextList(Locator locator) {
-        ArrayList<String> listResult = findElements(locator)
+    public ArrayList<String> getElementsText(Locator locator) {
+        ArrayList<String> elements = findElements(locator)
                 .stream().map(x -> x.getText()).collect(toCollection(ArrayList::new));
-        return listResult;
+        return elements;
     }
 
     public void click(Locator locator) {
@@ -86,19 +89,19 @@ public class Driver {
     }
 
     public void clickByText(Locator locator, String text) {
-        Optional<WebElement> element = Driver.getDriver().findElements(locator)
+        Optional<WebElement> element = findElements(locator)
                 .stream().filter(x -> x.getAttribute("textContent").trim().equals(text)).findFirst();
         element.get().click();
     }
 
-    public void clickPaginationByIndex(int index, Locator locator) {
-        ArrayList<WebElement> listAllNumberPageLink = Driver.getDriver().findElements(locator);
-        listAllNumberPageLink.get(index).click();
+    public void clickElementByIndex(int index, Locator locator) {
+        ArrayList<WebElement> elements = findElements(locator);
+        elements.get(index).click();
     }
 
     public void enterText(Locator locator, String text) {
-        WebElement search = findElement(locator);
-        search.sendKeys(text);
+        WebElement element = findElement(locator);
+        element.sendKeys(text);
     }
 
     public boolean exist(Locator locator) {
