@@ -40,6 +40,9 @@ gradle-app.setting
 out/
 .idea/
 .idea_modules/
+.allure/
+/allure-results
+/drivers
 *.iml
 *.ipr
 *.iws
