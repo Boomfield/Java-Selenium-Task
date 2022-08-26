@@ -3,7 +3,9 @@ package tests;
 import org.testng.annotations.*;
 import pages.PageAndCookie;
 import pages.tutorialNavigator.NavigatorPage;
+import pages.tutorialNavigator.data.TutorialNavigatorData;
 import pages.tutorialNavigator.helpers.ExperienceType;
+import pages.tutorialNavigator.helpers.OptionType;
 import steps.NavigatorSteps;
 
 public class TestTutorialPage extends BaseTest {
@@ -36,6 +38,13 @@ public class TestTutorialPage extends BaseTest {
         navigationSap.openNavigatorPageAndAcceptCookies();
         navigatorPage.experienceFacetSection.clickExperienceFilter(ExperienceType.Intermediate);
         navigatorSteps.VerifyAllHeaderResultsContains(ExperienceType.Intermediate);
+    }
+
+    @Test
+    public void checkFilterOptionWithTitleHeader() {
+        navigationSap.openNavigatorPageAndAcceptCookies();
+        navigatorPage.optionFacetSection.clickOptionFilter(OptionType.NewTutorials);
+        navigatorSteps.VerifyAllBodyResultsContains(TutorialNavigatorData.BODY_LABEL_RESULT);
     }
 
 }

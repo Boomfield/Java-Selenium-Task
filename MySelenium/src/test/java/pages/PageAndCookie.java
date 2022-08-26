@@ -15,7 +15,7 @@ public class PageAndCookie {
 
     public void openNavigatorPageAndAcceptCookies() {
         acceptCookieNavigatorPage();
-        getDriver().navigate(ConfigProperties.DEVELOPERS_URL + PageUrls.tutorials);
+        getDriver().navigate(ConfigProperties.DEVELOPERS_URL + PageUrls.TUTORIALS);
 
     }
 

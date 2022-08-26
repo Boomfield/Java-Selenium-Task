@@ -28,4 +28,12 @@ public class NavigatorSteps {
         }
     }
 
+    public void VerifyAllBodyResultsContains(String name) {
+        for (int i = 0; i < navigatorPage.getPaginationSize(); i++) {
+            navigatorPage.clickPaginationLinkByNumber(i);
+            ArrayList<String> allBodyLabel = Driver.getDriver().getElementsText(resultItem.bodyLabel);
+            assertThat(allBodyLabel, everyItem(equalTo(name)));
+        }
+    }
+
 }
