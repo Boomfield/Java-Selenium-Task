@@ -41,7 +41,7 @@ out/
 .idea/
 .idea_modules/
 .allure/
-.allure-results/
+allure-results/
 *.iml
 *.ipr
 *.iws
