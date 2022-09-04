@@ -31,7 +31,7 @@ public class ContactUsSapTests extends BaseTest {
                 .build();
     }
 
-    @Test
+    @Test(retryAnalyzer = settings.RetryAnalyzer.class)
     public void checkContactForm() {
         navigationSap.openSapPageAndAcceptCookies(PageUrls.INDEX_URL);
         contactUsWidget.openFrameContactForm();

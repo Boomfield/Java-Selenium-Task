@@ -27,21 +27,21 @@ public class TutorialNavigatorTests extends BaseTest {
         return data;
     }
 
-    @Test(dataProvider = "TopicSearchDataProvider")
+    @Test(dataProvider = "TopicSearchDataProvider", retryAnalyzer = settings.RetryAnalyzer.class)
     public void checkResultSearchTopic(String searchFilterText) {
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.TUTORIALS);
         navigatorPage.topicFacetSection.enterTopicSearchText(searchFilterText);
         navigatorSteps.VerifyAllTopicSearchResultsContains(searchFilterText);
     }
 
-    @Test
+    @Test(retryAnalyzer = settings.RetryAnalyzer.class)
     public void checkFilterExperienceWithTitleHeader() {
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.TUTORIALS);
         navigatorPage.experienceFacetSection.clickExperienceFilter(ExperienceType.Intermediate);
         navigatorSteps.VerifyAllHeaderResultsContains(ExperienceType.Intermediate);
     }
 
-    @Test
+    @Test(retryAnalyzer = settings.RetryAnalyzer.class)
     public void checkFilterOptionWithTitleHeader() {
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.TUTORIALS);
         navigatorPage.optionFacetSection.clickOptionFilter(OptionType.NewTutorials);
