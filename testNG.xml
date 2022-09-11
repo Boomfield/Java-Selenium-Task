@@ -3,7 +3,7 @@
 
 <suite name="Suite" parallel="methods" thread-count="10" data-provider-thread-count="5">
     <listeners>
-        <listener class-name="settings.AnnotationTransformer"/>
+        <listener class-name="settings.AnnotationTransformer"></listener>
     </listeners>
     <parameter name="env" value="prod"></parameter>
     <test name="Test">
