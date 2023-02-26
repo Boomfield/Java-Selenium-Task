@@ -7,6 +7,7 @@ import pages.tutorialNavigator.NavigatorPage;
 import pages.tutorialNavigator.data.TutorialNavigatorData;
 import pages.tutorialNavigator.helpers.ExperienceType;
 import pages.tutorialNavigator.helpers.OptionType;
+import settings.RetryAnalyzer;
 import steps.NavigatorSteps;
 
 public class TutorialNavigatorTests extends BaseTest {

@@ -9,6 +9,7 @@ import pages.contactUs.ContactUsForm;
 import pages.contactUs.helpers.RelationshipToSap;
 import pages.contactUs.helpers.Topic;
 import pages.contactUs.helpers.Form;
+import settings.RetryAnalyzer;
 
 public class ContactUsSapTests extends BaseTest {
 
@@ -31,7 +32,7 @@ public class ContactUsSapTests extends BaseTest {
                 .build();
     }
 
-    @Test
+    @Test ()
     public void checkContactForm() {
         navigationSap.openSapPageAndAcceptCookies(PageUrls.INDEX_URL);
         contactUsWidget.openFrameContactForm();
