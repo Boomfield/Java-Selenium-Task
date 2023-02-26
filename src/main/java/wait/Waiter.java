@@ -1,11 +1,6 @@
 package wait;
 
-import component.Locator;
-import driver.Driver;
-import org.openqa.selenium.By;
-
 import java.time.LocalDateTime;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class Waiter {

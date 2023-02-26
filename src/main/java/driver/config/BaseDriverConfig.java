@@ -1,7 +1,6 @@
 package driver.config;
 
 import org.openqa.selenium.WebDriver;
-
 import java.time.Duration;
 
 public abstract class BaseDriverConfig {

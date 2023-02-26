@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toCollection;
 
 public class Driver {
 
-    public WebDriver driver;
+    private WebDriver driver;
     private BaseDriverConfig config;
     private By currentFrame = null;
     public static ThreadLocal<Driver> instance = new ThreadLocal<>();

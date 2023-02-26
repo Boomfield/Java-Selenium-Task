@@ -12,12 +12,4 @@ public class Form {
     public Topic topic;
     public RelationshipToSap relationshipToSap;
 
-//    public Form(String firstName, String lastName, String mail, String companyName, Topic topic, RelationshipToSap relationshipToSap) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.mail = mail;
-//        this.companyName = companyName;
-//        this.topic = topic;
-//        this.relationshipToSap = relationshipToSap;
-//    }
 }
