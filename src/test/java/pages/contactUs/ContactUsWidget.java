@@ -9,7 +9,6 @@ public class ContactUsWidget extends BasePage {
 
     public Locator collapsedSection = getByXpath("//div[contains(@class,'Flyout__opener')]");
     public Locator formOpenLink = getByXpath("//a[contains(@class,'Title__titleInContactModule')]");
-    public Locator closeWidgetIcon = getByXpath("//div[@class='toolbtn exit icon-close mfp-close']");
 
     public void openFrameContactForm() {
         getDriver().click(collapsedSection);

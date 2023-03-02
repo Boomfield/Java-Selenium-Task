@@ -14,10 +14,6 @@ public class NavigatorPage extends BasePage {
     public FilterFacet optionFacetSection = new FilterFacet(getByXpath("(//div[contains(@class,'FilterFacets__filterFacetsColumn')])[5]"));
     public Locator paginationNumberLink = getByXpath("//a[contains(@class,'PageLink__pageLink')]");
 
-    public NavigatorPage(Locator locator) {
-        super(locator);
-    }
-
     public NavigatorPage() {
     }
 

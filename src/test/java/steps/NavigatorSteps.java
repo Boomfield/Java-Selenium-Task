@@ -23,6 +23,7 @@ public class NavigatorSteps {
     public void VerifyAllHeaderResultsContains(ExperienceType nameFilter) {
         for (int i = 0; i < navigatorPage.getPaginationSize(); i++) {
             navigatorPage.clickPaginationLinkByNumber(i);
+
             ArrayList<String> allHeaderTitle = Driver.getDriver().getElementsText(resultItem.headerTitle);
             assertThat(allHeaderTitle, everyItem(equalTo(nameFilter.toString())));
         }
@@ -31,6 +32,7 @@ public class NavigatorSteps {
     public void VerifyAllBodyResultsContains(String name) {
         for (int i = 0; i < navigatorPage.getPaginationSize(); i++) {
             navigatorPage.clickPaginationLinkByNumber(i);
+
             ArrayList<String> allBodyLabel = Driver.getDriver().getElementsText(resultItem.bodyLabel);
             assertThat(allBodyLabel, everyItem(equalTo(name)));
         }

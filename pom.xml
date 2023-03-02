@@ -8,6 +8,13 @@
     <artifactId>MySelenium</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <aspectj.version>1.8.10</aspectj.version>
+        <environment>env</environment>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -31,29 +38,32 @@
                     </dependency>
                 </dependencies>
             </plugin>
-        </plugins>
-    </build>
-
-    <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>write-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.build.testOutputDirectory}/run.properties</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.10.0</version>
                 <configuration>
-                    <reportVersion>2.17.2</reportVersion>
+                    <resultsDirectory>../allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>
-    </reporting>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <aspectj.version>1.8.10</aspectj.version>
-        <conf>prod</conf>
-    </properties>
+    </build>
 
     <dependencies>
         <dependency>

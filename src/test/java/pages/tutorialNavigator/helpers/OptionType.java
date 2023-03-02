@@ -1,9 +1,10 @@
 package pages.tutorialNavigator.helpers;
 
 public enum OptionType {
-    NewTutorials("New tutorials"),
-    NoLicense("No license"),
-    Community("Community");
+    NEW_TUTORIALS("New tutorials"),
+    NO_LICENSE("No license"),
+    COMMUNITY("Community");
+
     private String displayName;
 
     OptionType(String displayName) {

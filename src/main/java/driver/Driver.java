@@ -111,5 +111,4 @@ public class Driver {
     public void close() {
         getNativeDriver().close();
     }
-
 }

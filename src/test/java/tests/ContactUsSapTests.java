@@ -22,6 +22,7 @@ public class ContactUsSapTests extends BaseTest {
         contactUsWidget = new ContactUsWidget();
         navigationSap = new WebSiteNavigator();
         contactUsForm = new ContactUsForm();
+
         form = Form.builder()
                 .firstName("Yevhenii")
                 .lastName("Hurov")
@@ -35,8 +36,11 @@ public class ContactUsSapTests extends BaseTest {
     @Test ()
     public void checkContactForm() {
         navigationSap.openSapPageAndAcceptCookies(PageUrls.INDEX_URL);
+
         contactUsWidget.openFrameContactForm();
-        contactUsForm.fillForm(form,RandomString.make(25));
+
+        contactUsForm.fillForm(form, RandomString.make(25));
+
         // Verify was not added not to submit test data for production
     }
 
