@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import settings.TestWatcher;
 
-
 import static driver.Driver.getDriver;
 
 @Listeners(TestWatcher.class)
