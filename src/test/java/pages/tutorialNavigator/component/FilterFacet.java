@@ -20,9 +20,6 @@ public class FilterFacet extends BasePage {
         super(locator);
     }
 
-    public FilterFacet() {
-    }
-
     public void clickExperienceFilter(ExperienceType nameFilterExperience) {
         Waiter.wait(() -> Driver.getDriver().exist(resultItem.headerTitle), 10);
         getDriver().clickByText(resultLabelBy, nameFilterExperience.toString());

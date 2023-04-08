@@ -12,10 +12,13 @@ public class ChromeDriverConfig extends BaseDriverConfig {
     @Override
     public WebDriver createDriver(String pathToChromeDriver) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        ChromeOptions option = new ChromeOptions();
-        option.addArguments("incognito","--remote-allow-origins=*");
-        capabilities.setCapability(ChromeOptions.CAPABILITY,option);
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("incognito", "--remote-allow-origins=*");
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+
         System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
+
         WebDriver driver = new ChromeDriver(capabilities);
 
         configureWaits(driver);

@@ -33,22 +33,28 @@ public class TutorialNavigatorTests extends BaseTest {
     @Test(dataProvider = "TopicSearchDataProvider")
     public void checkResultSearchTopic(String searchFilterText) {
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.TUTORIALS);
+
         navigatorPage.topicFacetSection.enterTopicSearchText(searchFilterText);
+
         navigatorSteps.verifyAllTopicSearchResultsContains(searchFilterText);
     }
 
     @Test
     public void checkFilterExperienceWithTitleHeader() {
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.TUTORIALS);
-        navigatorPage.experienceFacetSection.clickExperienceFilter(ExperienceType.Intermediate);
-        navigatorSteps.verifyAllHeaderResultsContains(ExperienceType.Intermediate);
+
+        navigatorPage.experienceFacetSection.clickExperienceFilter(ExperienceType.INTERMEDIATE);
+
+        navigatorSteps.verifyAllHeaderResultsContains(ExperienceType.INTERMEDIATE);
 
     }
 
     @Test
     public void checkFilterOptionWithTitleHeader() {
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.TUTORIALS);
-        navigatorPage.optionFacetSection.clickOptionFilter(OptionType.NewTutorials);
+
+        navigatorPage.optionFacetSection.clickOptionFilter(OptionType.NEW_TUTORIALS);
+
         navigatorSteps.verifyAllBodyResultsContains(TutorialNavigatorData.NEW_LABEL_TEXT);
     }
 
@@ -56,9 +62,13 @@ public class TutorialNavigatorTests extends BaseTest {
     public void checkTitlePageOnSteps() {
         int stepNumber = 3;
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.STEP_TUTORIALS);
+
         titlePage.stepTutorials.waitLoadStepAndClose(1);
+
         titlePage.clickTitleStepsByNumber(stepNumber);
+
         navigatorSteps.verifyStepTutorialNumber(stepNumber);
+
         navigatorSteps.verifyStepTutorialIsOpen(stepNumber);
     }
 

@@ -5,7 +5,6 @@
     <listeners>
         <listener class-name="settings.AnnotationTransformer"></listener>
     </listeners>
-    <parameter name="env" value="prod"></parameter>
     <test name="Test">
         <classes>
             <class name="tests.TutorialNavigatorTests"></class>

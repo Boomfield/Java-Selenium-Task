@@ -1,4 +1,4 @@
-package driver.data;
+package data;
 
 import org.openqa.selenium.Cookie;
 

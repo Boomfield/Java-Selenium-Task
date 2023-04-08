@@ -1,7 +1,6 @@
 package tests;
 
 import data.PageUrls;
-import io.qameta.allure.Step;
 import net.bytebuddy.utility.RandomString;
 import org.testng.annotations.Test;
 import pages.contactUs.ContactUsWidget;
@@ -23,6 +22,7 @@ public class ContactUsSapTests extends BaseTest {
         contactUsWidget = new ContactUsWidget();
         navigationSap = new WebSiteNavigator();
         contactUsForm = new ContactUsForm();
+
         form = Form.builder()
                 .firstName("Yevhenii")
                 .lastName("Hurov")
@@ -33,12 +33,14 @@ public class ContactUsSapTests extends BaseTest {
                 .build();
     }
 
-    @Step
-    @Test()
+    @Test ()
     public void checkContactForm() {
         navigationSap.openSapPageAndAcceptCookies(PageUrls.INDEX_URL);
+
         contactUsWidget.openFrameContactForm();
+
         contactUsForm.fillForm(form, RandomString.make(25));
+
         // Verify was not added not to submit test data for production
     }
 

@@ -1,6 +1,7 @@
 package pages.contactUs;
 
 import component.Locator;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.BasePage;
 import pages.contactUs.helpers.RelationshipToSap;
@@ -29,10 +30,12 @@ public class ContactUsForm extends BasePage {
 
     public void chooseTopic(Topic contactFormTopicType) {
         Waiter.waitNoError(() -> getDriver().click(topicDropdown));
+
         getDriver().enterText(titleInput, contactFormTopicType.toString());
         getDriver().click(topicAreaListOption);
     }
 
+    @Step
     public void fillForm(Form form,String message) {
         chooseTopic(form.topic);
         enterMessage(message);

@@ -1,4 +1,6 @@
-package driver.config;
+package driver.config.builder;
+
+import driver.config.BaseDriverConfig;
 
 import java.time.Duration;
 
