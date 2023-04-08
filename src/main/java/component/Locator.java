@@ -22,8 +22,8 @@ public class Locator {
         this.element = element;
     }
 
-    public static Locator getXpathWithIndex(String xpath, int index) {
-        return new Locator(By.xpath(String.format("("+xpath+")[%s]", index)));
+    public static Locator xpath(String xpath, int index) {
+        return new Locator(By.xpath(String.format("(" + xpath + ")[%s]", index)));
     }
 
 }

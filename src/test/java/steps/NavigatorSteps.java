@@ -43,7 +43,7 @@ public class NavigatorSteps {
     }
 
     public void verifyStepTutorialIsOpen(int stepNumber) {
-        assertThat(titlePage.stepTutorials.checkAttributeHeight(titlePage.getStepTutorials(stepNumber).stepExpander, "offsetHeight"), is(true));
+        assertThat(titlePage.getStepTutorials(stepNumber).isStepExpanded(), is(true));
     }
 
 }
