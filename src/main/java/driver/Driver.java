@@ -122,8 +122,7 @@ public class Driver {
     }
 
     public boolean displayed(Locator locator) {
-        boolean existElement = exist(locator);
-        if (existElement) {
+        if (exist(locator)) {
             return getNativeDriver().findElement(locator.element).isDisplayed();
         }
         return false;

@@ -1,5 +1,6 @@
 package steps;
 
+import component.Locator;
 import pages.tutorialPage.TutorialPage;
 import wait.Waiter;
 
@@ -12,13 +13,13 @@ public class TutorialSteps {
     private TutorialPage tutorialPage = new TutorialPage();
 
     public void verifyStepNumberIsViewport(int stepNumber) {
-        boolean inViewport = getDriver().isVisibleInViewport(tutorialPage.getStepTutorials(stepNumber).titleLabel);
-        Waiter.wait(() -> inViewport, 3);
+        Locator inViewport = tutorialPage.getTutorialStep(stepNumber).titleLabel;
+        Waiter.wait(() -> getDriver().isVisibleInViewport(inViewport), 3);
 
-        assertThat(inViewport, is(true));
+        assertThat(getDriver().isVisibleInViewport(inViewport), is(true));
     }
 
     public void verifyStepTutorialIsOpen(int stepNumber) {
-        assertThat(tutorialPage.getStepTutorials(stepNumber).isStepExpanded(), is(true));
+        assertThat(tutorialPage.getTutorialStep(stepNumber).isStepExpanded(), is(true));
     }
 }

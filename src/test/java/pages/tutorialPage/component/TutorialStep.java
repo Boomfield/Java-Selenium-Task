@@ -8,14 +8,14 @@ import static driver.Driver.getDriver;
 
 public class TutorialStep extends BasePage {
 
-    public Locator titleLabel = getByXpath(".//*[contains(@class,'Header__url')]");
+    public Locator titleLabel = getByXpath(".//*[contains(@class,'Top__title')]");
     public Locator bodySection = getByXpath(".//div[contains(@class,'Expander__wrapper')]");
 
     public TutorialStep(int index) {
         super(Locator.xpath("//div[contains(@class,'Expander__expander')]", index));
     }
 
-    public void waitLoadStep() {
+    public void waitForPageLoad() {
         Waiter.wait(() -> isStepExpanded(), 5);
     }
 

@@ -23,8 +23,8 @@ public class TutorialPageTests extends BaseTest {
         int stepNumber = 3;
         navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.STEP_TUTORIALS);
 
-        tutorialPage.getStepTutorials(1).waitLoadStep();
-        tutorialPage.clickTitleStepsByNumber(stepNumber);
+        tutorialPage.getTutorialStep(1).waitForPageLoad();
+        tutorialPage.clickStepTitleByNumber(stepNumber);
 
         tutorialSteps.verifyStepTutorialIsOpen(stepNumber);
         tutorialSteps.verifyStepNumberIsViewport(stepNumber);
