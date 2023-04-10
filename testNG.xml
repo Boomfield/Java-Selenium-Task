@@ -9,6 +9,7 @@
         <classes>
             <class name="tests.TutorialNavigatorTests"></class>
             <class name="tests.ContactUsSapTests"></class>
+            <class name="tests.TutorialPageTests"></class>
         </classes>
     </test>
 </suite>

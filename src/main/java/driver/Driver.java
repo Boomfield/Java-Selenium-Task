@@ -121,52 +121,27 @@ public class Driver {
         }
     }
 
-    public boolean dispayed(Locator locator) {
-        exist(locator);
-        try {
-            getNativeDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+    public boolean displayed(Locator locator) {
+        boolean existElement = exist(locator);
+        if (existElement) {
             return getNativeDriver().findElement(locator.element).isDisplayed();
-        } catch (Exception ex) {
-            return false;
-        } finally {
-            getNativeDriver().manage().timeouts().implicitlyWait(config.timeElementWait);
         }
+        return false;
     }
 
-    public void scrollByElementWithJS(Locator locator) {
-        WebElement element = findElement(locator);
-        ((JavascriptExecutor) getNativeDriver()).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
-    }
-
-    public void scrollByElement(Locator locator) {
-        WebElement element = findElement(locator);
-        Actions actions = new Actions(getNativeDriver());
-
-        actions.scrollToElement(element).sendKeys(Keys.PAGE_DOWN).build().perform();
-    }
-
-    public Boolean isVisibleInViewport(Locator locator) {
-        WebElement element = findElement(locator);
-        Boolean isDisplayed = element.isDisplayed();
-        boolean result;
-
+    public Object executeJavascript(String script, Locator locator) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        Boolean isElementInViewport = (Boolean) js.executeScript("var rect = arguments[0].getBoundingClientRect(); " +
-                "var windowHeight = window.innerHeight || document.documentElement.clientHeight; " +
-                "return rect.top >= 0 && rect.bottom <= windowHeight;", element);
-
-        if (isDisplayed && isElementInViewport) {
-            result = true;
-        } else {
-            result = false;
-        }
-        return result;
+        return js.executeScript(script, findElement(locator));
     }
 
-    public WebElement waitForElementToBeVisibility(By by) {
-        return new WebDriverWait(getNativeDriver(), Duration.ofSeconds(5))
-                .until(ExpectedConditions.refreshed(
-                        ExpectedConditions.visibilityOfElementLocated(by)));
+    public boolean isVisibleInViewport(Locator locator) {
+        Boolean isDisplayed = displayed(locator);
+
+        Boolean isElementInViewport = (Boolean) executeJavascript("var rect = arguments[0].getBoundingClientRect(); " +
+                "var windowHeight = window.innerHeight || document.documentElement.clientHeight; " +
+                "return rect.top >= 0 && rect.bottom <= windowHeight;", locator);
+
+        return isDisplayed && isElementInViewport;
     }
 
     public void close() {

@@ -1,7 +1,6 @@
 package steps;
 
 import pages.tutorialNavigator.NavigatorPage;
-import pages.tutorialNavigator.TitlePage;
 import pages.tutorialNavigator.component.ResultItem;
 import pages.tutorialNavigator.helpers.ExperienceType;
 
@@ -14,7 +13,6 @@ import static org.hamcrest.Matchers.*;
 public class NavigatorSteps {
 
     private NavigatorPage navigatorPage = new NavigatorPage();
-    private TitlePage titlePage = new TitlePage();
     public ResultItem resultItem = new ResultItem();
 
     public void verifyAllTopicSearchResultsContains(String text) {
@@ -37,13 +35,4 @@ public class NavigatorSteps {
             assertThat(allBodyLabel, everyItem(equalTo(name)));
         }
     }
-
-    public void verifyStepTutorialNumber(int stepNumber) {
-        assertThat(getDriver().isVisibleInViewport(titlePage.getStepTutorials(stepNumber).stepHeadTitle), is(true));
-    }
-
-    public void verifyStepTutorialIsOpen(int stepNumber) {
-        assertThat(titlePage.getStepTutorials(stepNumber).isStepExpanded(), is(true));
-    }
-
 }

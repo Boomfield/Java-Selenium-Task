@@ -23,7 +23,7 @@ public class Locator {
     }
 
     public static Locator xpath(String xpath, int index) {
-        return new Locator(By.xpath(String.format("(" + xpath + ")[%s]", index)));
+        return new Locator(By.xpath(String.format("( %s )[%s]",xpath, index)));
     }
 
 }

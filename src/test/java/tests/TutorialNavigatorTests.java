@@ -4,7 +4,6 @@ import data.PageUrls;
 import org.testng.annotations.*;
 import pages.WebSiteNavigator;
 import pages.tutorialNavigator.NavigatorPage;
-import pages.tutorialNavigator.TitlePage;
 import pages.tutorialNavigator.data.TutorialNavigatorData;
 import pages.tutorialNavigator.helpers.ExperienceType;
 import pages.tutorialNavigator.helpers.OptionType;
@@ -14,13 +13,11 @@ public class TutorialNavigatorTests extends BaseTest {
 
     private NavigatorPage navigatorPage;
     private NavigatorSteps navigatorSteps;
-    private TitlePage titlePage;
     private WebSiteNavigator navigationSap;
 
     public TutorialNavigatorTests() {
         navigatorPage = new NavigatorPage();
         navigatorSteps = new NavigatorSteps();
-        titlePage = new TitlePage();
         navigationSap = new WebSiteNavigator();
     }
 
@@ -57,19 +54,6 @@ public class TutorialNavigatorTests extends BaseTest {
 
         navigatorSteps.verifyAllBodyResultsContains(TutorialNavigatorData.NEW_LABEL_TEXT);
     }
-
-    @Test()
-    public void checkTitlePageOnSteps() {
-        int stepNumber = 3;
-        navigationSap.openNavigatorPageAndAcceptCookies(PageUrls.STEP_TUTORIALS);
-
-        titlePage.stepTutorials.waitLoadStep();
-        titlePage.clickTitleStepsByNumber(stepNumber);
-
-        navigatorSteps.verifyStepTutorialNumber(stepNumber);
-        navigatorSteps.verifyStepTutorialIsOpen(stepNumber);
-    }
-
 }
 
 
