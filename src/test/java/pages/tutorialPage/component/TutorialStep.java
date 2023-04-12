@@ -15,10 +15,6 @@ public class TutorialStep extends BasePage {
         super(Locator.xpath("//div[contains(@class,'Expander__expander')]", index));
     }
 
-    public void waitForPageLoad() {
-        Waiter.wait(() -> isStepExpanded(), 5);
-    }
-
     public boolean isStepExpanded() {
         int height = Integer.parseInt(getDriver().getAttribute(bodySection, "offsetHeight"));
         return height != 0;
