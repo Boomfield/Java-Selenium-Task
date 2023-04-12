@@ -3,6 +3,9 @@ package driver;
 import component.Locator;
 import driver.config.BaseDriverConfig;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -66,10 +69,20 @@ public class Driver {
         return (ArrayList<WebElement>) findParent(locator).findElements(locator.element);
     }
 
+    public String getElementText(Locator locator) {
+        WebElement element = findElement(locator);
+        return element.getText();
+    }
+
     public ArrayList<String> getElementsText(Locator locator) {
         ArrayList<String> elements = findElements(locator)
                 .stream().map(x -> x.getText()).collect(toCollection(ArrayList::new));
         return elements;
+    }
+
+    public String getAttribute(Locator locator, String name) {
+        WebElement element = findElement(locator);
+        return element.getAttribute(name);
     }
 
     public void click(Locator locator) {
@@ -106,6 +119,28 @@ public class Driver {
         } finally {
             getNativeDriver().manage().timeouts().implicitlyWait(config.timeElementWait);
         }
+    }
+
+    public boolean displayed(Locator locator) {
+        if (exist(locator)) {
+            return getNativeDriver().findElement(locator.element).isDisplayed();
+        }
+        return false;
+    }
+
+    public Object executeJavascript(String script, Locator locator) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return js.executeScript(script, findElement(locator));
+    }
+
+    public boolean isVisibleInViewport(Locator locator) {
+        Boolean isDisplayed = displayed(locator);
+
+        Boolean isElementInViewport = (Boolean) executeJavascript("var rect = arguments[0].getBoundingClientRect(); " +
+                "var windowHeight = window.innerHeight || document.documentElement.clientHeight; " +
+                "return rect.top >= 0 && rect.bottom <= windowHeight;", locator);
+
+        return isDisplayed && isElementInViewport;
     }
 
     public void close() {

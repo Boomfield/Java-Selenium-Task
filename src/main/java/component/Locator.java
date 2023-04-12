@@ -17,5 +17,13 @@ public class Locator {
         this.element = element;
         this.parent = parent;
     }
-    
+
+    public Locator(By element) {
+        this.element = element;
+    }
+
+    public static Locator xpath(String xpath, int index) {
+        return new Locator(By.xpath(String.format("( %s )[%s]",xpath, index)));
+    }
+
 }

@@ -33,7 +33,7 @@ public class TutorialNavigatorTests extends BaseTest {
 
         navigatorPage.topicFacetSection.enterTopicSearchText(searchFilterText);
 
-        navigatorSteps.VerifyAllTopicSearchResultsContains(searchFilterText);
+        navigatorSteps.verifyAllTopicSearchResultsContains(searchFilterText);
     }
 
     @Test
@@ -42,7 +42,8 @@ public class TutorialNavigatorTests extends BaseTest {
 
         navigatorPage.experienceFacetSection.clickExperienceFilter(ExperienceType.INTERMEDIATE);
 
-        navigatorSteps.VerifyAllHeaderResultsContains(ExperienceType.INTERMEDIATE);
+        navigatorSteps.verifyAllHeaderResultsContains(ExperienceType.INTERMEDIATE);
+
     }
 
     @Test
@@ -51,8 +52,9 @@ public class TutorialNavigatorTests extends BaseTest {
 
         navigatorPage.optionFacetSection.clickOptionFilter(OptionType.NEW_TUTORIALS);
 
-        navigatorSteps.VerifyAllBodyResultsContains(TutorialNavigatorData.NEW_LABEL_TEXT);
+        navigatorSteps.verifyAllBodyResultsContains(TutorialNavigatorData.NEW_LABEL_TEXT);
     }
-
 }
+
+
 

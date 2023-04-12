@@ -14,7 +14,7 @@ public class ChromeDriverConfig extends BaseDriverConfig {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("incognito");
+        options.addArguments("incognito", "--remote-allow-origins=*");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
         System.setProperty("webdriver.chrome.driver", pathToChromeDriver);
